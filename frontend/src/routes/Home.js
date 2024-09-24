@@ -144,8 +144,8 @@ const Home = () => {
                         </div>
                         <div className="w-2/5 flex justify-around h-full items-center">
                             <TextWithHover displayText={"Sign up"} />
-                            <div className="bg-white h-2/3 px-8 flex items-center justify-center rounded-full font-semibold cursor-pointer">
-                                Log in
+                            <div className="bg-black h-2/3 px-8 flex items-center justify-center rounded-full font-semibold cursor-pointer">
+                            <IconText displayText={"login"} targetLink={"/login"} />
                             </div>
                         </div>
                     </div>

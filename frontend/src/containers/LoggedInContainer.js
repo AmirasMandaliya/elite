@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import { Howl, Howler } from 'howler';
-import { useState, useLayoutEffect, useRef, Children, useContext } from 'react';
+import { useState, useLayoutEffect, useRef, useEffect,Children, useContext } from 'react';
 import photo from "../files/logo5.png";
 import IconText from "../components/IconText";
 import TextWithHover from "../components/TextWithHover";
@@ -18,6 +18,8 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
     const [createPlaylistModalOpen, setCreatePlaylistModalOpen] =
         useState(false);
     const [addToPlaylistModalOpen, setAddToPlaylistModalOpen] = useState(false);
+    const { playlist, currentSongIndex, setCurrentSongIndex } = useContext(songContext);
+    
 
     const { currentSong, setCurrentSong, soundPlayed, setSoundPlayed, isPaused, setIsPaused } = useContext(songContext);
     const firstUpdate = useRef(true);
@@ -82,6 +84,13 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
             setIsPaused(true);
         }
     };
+    useEffect(() => {
+        setIsPaused(false); // Start playing automatically when a song is set
+    }, [currentSongIndex]);
+
+    
+
+   
     return (
         <div className="relative h-screen  ">
             {createPlaylistModalOpen && (
@@ -144,6 +153,8 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
                             <IconText
                                 iconName={"mdi:cards-heart"}
                                 displayText={"Liked Songs"}
+                                targetLink={"/like"}
+                                active={curActiveScreen === "like"}
                             />
                         </div>
                     </div>
@@ -169,8 +180,8 @@ const LoggedInContainer = ({ children, curActiveScreen }) => {
                             </div>
                             <div className="w-2/5 flex justify-around h-full items-center">
                                 <IconText displayText={"Upload Song"} targetLink={"/uploadSong"} />
-                                <div className="bg-white h-2/3 px-8 flex items-center justify-center rounded-full font-semibold cursor-pointer">
-                                    AC
+                                <div className="bg-black h-2/3 px-8 flex items-center justify-center rounded-full font-semibold cursor-pointer">
+                                <IconText displayText={"logout"} targetLink={"/logout"} />
                                 </div>
                             </div>
                         </div>

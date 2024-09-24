@@ -27,6 +27,7 @@ function App() {
               <Route path="/home" element={<LoggedInHomeComponent />} />
               <Route path="/search" element={<SearchPage />} />
               <Route path="/library" element={<Library />} />
+              <Route path="/logout" element={<HomeComponent />} />
               <Route path="/login" element={<LoginComponent />} />
               <Route path="/uploadSong" element={<UploadSong />} />
               <Route path="/myMusic" element={<MyMusic />} />
